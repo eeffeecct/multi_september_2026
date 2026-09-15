@@ -1,14 +1,73 @@
-# java_multi_september_2026
+# Java Multi — September 2026
 
-## 1. Протестировать следующие классы и проверить являются ли они потокобезопасными.
-указанные коллекции должны быть все обязательно, а из нижнего списка хотя бы 4 любых.
+## Задание 1 — Проверка потокобезопасности
 
-//hashmap,treemap, arraylist,linkedlist, hashset,treeset
-//TrickyCache GreetingService RequestIdService CoordinatesService ExpensiveLookupCacheService
-//AuditLogService FeatureFlagsService BankAccountService StatsService ConfigService
+Необходимо протестировать перечисленные классы и определить, являются ли они **потокобезопасными (thread-safe)**.
 
-(Чтобы запустить тест напишите его по образцу TestSum, потом напишите mvn clean package а потом
-java -jar ./target/jstress.jar)
+### Коллекции — обязательно все
 
-## 2. Ускорьте программу используя отступы в классе Padding.java, 
-кто хочет ультануть сделайте это через @Contended.
+Необходимо протестировать **все** следующие коллекции:
+
+* `HashMap`
+* `TreeMap`
+* `ArrayList`
+* `LinkedList`
+* `HashSet`
+* `TreeSet`
+
+### Сервисы — минимум 4
+
+Из следующего списка необходимо выбрать и протестировать **как минимум 4 класса**:
+
+* `TrickyCache`
+* `GreetingService`
+* `RequestIdService`
+* `CoordinatesService`
+* `ExpensiveLookupCacheService`
+* `AuditLogService`
+* `FeatureFlagsService`
+* `BankAccountService`
+* `StatsService`
+* `ConfigService`
+
+Для каждого протестированного класса необходимо сделать вывод:
+
+* является ли он потокобезопасным;
+* если нет — при каких условиях возникают проблемы;
+* какие race conditions или другие проблемы конкурентного доступа можно обнаружить.
+
+### Как запустить тесты
+
+Напишите тест по аналогии с `TestSum`.
+
+После этого выполните:
+
+```bash
+mvn clean package
+```
+
+Затем запустите собранный JAR:
+
+```bash
+java -jar ./target/jstress.jar
+```
+
+---
+
+## Задание 2 — Оптимизация с помощью Padding
+
+Необходимо ускорить программу, используя **padding** в классе `Padding.java`.
+
+Цель — исследовать влияние размещения полей в памяти на производительность многопоточной программы и, в частности, влияние **false sharing**.
+
+### Базовый вариант
+
+Реализуйте padding непосредственно в `Padding.java` и сравните производительность программы до и после изменений.
+
+### Дополнительное задание
+
+Для тех, кто хочет усложнить задачу, попробуйте реализовать оптимизацию с помощью:
+(это опционально)
+```java
+@Contended
+```
