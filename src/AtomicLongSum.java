@@ -35,7 +35,7 @@ public class AtomicLongSum {
         Path dir = Path.of(System.getProperty("user.dir")).resolve("output").toAbsolutePath();
         Long begin = System.currentTimeMillis();
 
-        ExecutorService pool = Executors.newSingleThreadExecutor();
+        ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
         System.out.println(" Starting ...");
         AtomicLong total = new AtomicLong(0L);
